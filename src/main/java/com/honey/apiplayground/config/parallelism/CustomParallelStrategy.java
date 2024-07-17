@@ -1,5 +1,6 @@
-package com.honey.apiplayground.config;
+package com.honey.apiplayground.config.parallelism;
 
+import com.honey.apiplayground.config.environment.EnvironmentVariables;
 import org.junit.platform.engine.ConfigurationParameters;
 import org.junit.platform.engine.support.hierarchical.ParallelExecutionConfiguration;
 import org.junit.platform.engine.support.hierarchical.ParallelExecutionConfigurationStrategy;

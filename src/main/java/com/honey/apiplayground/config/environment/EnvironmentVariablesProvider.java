@@ -1,4 +1,4 @@
-package com.honey.apiplayground.config;
+package com.honey.apiplayground.config.environment;
 
 import java.util.NoSuchElementException;
 
