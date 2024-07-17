@@ -6,14 +6,18 @@
 
     <groupId>com.honey.apiplayground</groupId>
     <artifactId>honey-api-playground-integration-tests</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <rest-assured.version>5.4.0</rest-assured.version>
+        <cucumber.java.version>7.18.0</cucumber.java.version>
+        <cucumber.junit.platform.engine.version>7.18.0</cucumber.junit.platform.engine.version>
+        <junit-suit.version>1.10.3</junit-suit.version>
+        <rest-assured.version>5.5.0</rest-assured.version>
+        <json-path.version>2.9.0</json-path.version>
 
     </properties>
 
@@ -27,10 +31,33 @@
     <dependencies>
 
         <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.java.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit-platform-engine</artifactId>
+            <version>${cucumber.junit.platform.engine.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite</artifactId>
+            <version>${junit-suit.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>${rest-assured.version}</version>
-<!--            <scope>test</scope>-->
+        </dependency>
+
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+            <version>${json-path.version}</version>
         </dependency>
 
     </dependencies>
