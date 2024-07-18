@@ -4,15 +4,15 @@ public final class ScenarioContext {
 
     private ScenarioContext() {}
 
-    public void save(String key, String value) {
+    public static void save(String key, Object value) {
         ScenarioContextStorage.getScenarioData().put(key, value);
     }
 
-    public Object get(String key) {
+    public static Object get(String key) {
         return ScenarioContextStorage.getScenarioData().get(key);
     }
 
-    public void delete(String key) {
+    public static void delete(String key) {
         ScenarioContextStorage.getScenarioData().remove(key);
     }
 }
