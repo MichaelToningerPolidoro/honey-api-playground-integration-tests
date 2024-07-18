@@ -1,0 +1,8 @@
+{
+  "someKey1": "someValue1",
+  "someKey2": 2,
+  "someKey3": {
+    "key1": "testing"
+  },
+  "someKey4": ["someValue4", "someValue5", "someValue6"]
+}
