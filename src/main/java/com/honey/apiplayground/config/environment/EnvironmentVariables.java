@@ -6,7 +6,6 @@ import static com.honey.apiplayground.constants.EnvironmentVariablesConstants.PA
 
 public final class EnvironmentVariables {
 
-    // FIXME change it to a propertie
     private static final boolean isRequestBodyCacheEnabled = Boolean.parseBoolean(getEnv(CACHE_REQUEST_BODIES));
     private static final int getParallelScenariosCount = getEnv(PARALLEL_SCENARIOS_COUNT) == null ? 1 : Integer.parseInt(getEnv(PARALLEL_SCENARIOS_COUNT));
 
