@@ -10,4 +10,9 @@ public final class BodySteps {
     public void addBody(String jsonFileName) {
         RequestHandler.addBody(RequestBodyRetriever.getJsonFileBodyAsString(jsonFileName));
     }
+
+    @Given("remove body")
+    public void removeBody() {
+        RequestHandler.removeBody();
+    }
 }
