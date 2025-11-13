@@ -1,0 +1,15 @@
+{
+  "nickName": "newNickName",
+  "name": "newName",
+  "password": "myNewPassword",
+  "programmingTime": "More than 2 years",
+  "bornData": {
+    "date": "2023-01-15",
+    "country": "Australia"
+  },
+  "hobbies": [
+    "Programming",
+    "Watch series",
+    "Ride a bicycle"
+  ]
+}

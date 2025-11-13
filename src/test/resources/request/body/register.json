@@ -1,0 +1,16 @@
+{
+  "nickName": "testingGuy",
+  "name": "Joaquim",
+  "email": "email@domain.com",
+  "password": "SomeRandomPassword",
+  "programmingTime": "Between 6 months and 1 year",
+  "bornData": {
+    "date": "2022-12-22",
+    "country": "Brazil"
+  },
+  "hobbies": [
+    "Programming",
+    "Watch movies",
+    "Play video games"
+  ]
+}
