@@ -40,4 +40,8 @@ public final class RequestHandler {
     public static void addBody(String body) {
         RequestManager.getScenarioRequest().body(body);
     }
+
+    public static void removeBody() {
+        RequestManager.getScenarioRequest().body("");
+    }
 }
