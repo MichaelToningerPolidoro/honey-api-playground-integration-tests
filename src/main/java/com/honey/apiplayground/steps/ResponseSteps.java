@@ -1,5 +1,6 @@
 package com.honey.apiplayground.steps;
 
+import com.honey.apiplayground.DataTableTypeTransformer;
 import com.honey.apiplayground.context.ScenarioContextStorage;
 import com.honey.apiplayground.handlers.ResponseHandler;
 import io.cucumber.java.en.Then;
@@ -21,8 +22,8 @@ public final class ResponseSteps {
     public void validateResponseBody(Map<String, String> expectedData) {
         final ValidatableResponse savedAsValidatableResponse = ResponseHandler.getSavedAsValidatableResponse();
 
-        expectedData.forEach((gPathExpression, expectedBooleanValue) -> {
-            savedAsValidatableResponse.body(gPathExpression, Matchers.equalTo(Boolean.valueOf(expectedBooleanValue)));
+        DataTableTypeTransformer.transformMap(expectedData).forEach((expression, expectedValue) -> {
+            savedAsValidatableResponse.body(expression, Matchers.equalTo(expectedValue));
         });
 
     }
