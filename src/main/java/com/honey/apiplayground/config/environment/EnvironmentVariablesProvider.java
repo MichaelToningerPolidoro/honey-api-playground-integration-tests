@@ -9,7 +9,7 @@ public final class EnvironmentVariablesProvider {
     public static String getRequiredEnv(String envVarName) {
         final String envVarValue = getEnv(envVarName);
 
-        if (envVarValue == null) {
+        if (envVarValue == null || envVarValue.isBlank()) {
             throw new NoSuchElementException("Required environment variable <" + envVarName + "> was not found!");
         }
 
