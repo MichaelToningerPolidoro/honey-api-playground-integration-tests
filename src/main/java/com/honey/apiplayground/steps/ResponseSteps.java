@@ -1,7 +1,7 @@
 package com.honey.apiplayground.steps;
 
 import com.honey.apiplayground.DataTableTypeTransformer;
-import com.honey.apiplayground.context.ScenarioContextStorage;
+import com.honey.apiplayground.context.ScenarioContext;
 import com.honey.apiplayground.handlers.ResponseHandler;
 import io.cucumber.java.en.Then;
 import io.restassured.path.json.JsonPath;
@@ -33,11 +33,7 @@ public final class ResponseSteps {
     @Then("save response data")
     public void saveResponseData(Map<String, String> expectedData) {
         final JsonPath jsonPath = ResponseHandler.getSavedAsJsonPath();
-        final Map<String, Object> scenarioData = ScenarioContextStorage.getScenarioData();
-
-        expectedData.forEach((variableName, valuePath) -> {
-            scenarioData.put(variableName, jsonPath.get(valuePath));
-        });
+        expectedData.forEach((variableName, valuePath) -> ScenarioContext.save(variableName, jsonPath.get(valuePath)));
     }
 
 }
