@@ -13,11 +13,10 @@
         <maven.compiler.target>24</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <cucumber.java.version>7.31.0</cucumber.java.version>
-        <cucumber.junit.platform.engine.version>7.31.0</cucumber.junit.platform.engine.version>
+        <cucumber.java.version>7.34.3</cucumber.java.version>
         <junit-suit.version>1.14.0</junit-suit.version>
-        <rest-assured.version>5.5.6</rest-assured.version>
-        <json-path.version>2.9.0</json-path.version>
+        <rest-assured.version>6.0.0</rest-assured.version>
+        <json-path.version>3.0.0</json-path.version>
         <commons-io.version>2.21.0</commons-io.version>
 
     </properties>
@@ -40,7 +39,7 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit-platform-engine</artifactId>
-            <version>${cucumber.junit.platform.engine.version}</version>
+            <version>${cucumber.java.version}</version>
         </dependency>
 
         <dependency>
