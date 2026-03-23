@@ -4,7 +4,9 @@ public final class RunnerConstants {
 
     private RunnerConstants() {}
 
-    public static final String GLUE_PATH = "com/honey/apiplayground";
+    public static final String EXECUTION_ORDER = "random";
     public static final String FEATURES_PATH = "src/test/resources/features";
+    public static final String GLUE_PATH = "com/honey/apiplayground";
     public static final String PLUGINS = "pretty, summary, html:src/test/resources/evidences/cucumber-html-report.html";
+
 }

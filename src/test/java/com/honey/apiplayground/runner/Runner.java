@@ -11,6 +11,7 @@ import org.junit.platform.suite.api.Suite;
 @ConfigurationParameter(key = Constants.GLUE_PROPERTY_NAME, value = RunnerConstants.GLUE_PATH)
 @ConfigurationParameter(key = Constants.FEATURES_PROPERTY_NAME, value = RunnerConstants.FEATURES_PATH)
 @ConfigurationParameter(key = Constants.PLUGIN_PROPERTY_NAME, value = RunnerConstants.PLUGINS)
-@ConfigurationParameter(key = Constants.FILTER_TAGS_PROPERTY_NAME,value = "@regression")
+@ConfigurationParameter(key = Constants.EXECUTION_ORDER_PROPERTY_NAME, value = RunnerConstants.EXECUTION_ORDER)
+@ConfigurationParameter(key = Constants.FILTER_TAGS_PROPERTY_NAME,value = "@endToEnd")
 public class Runner {
 }
