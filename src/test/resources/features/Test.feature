@@ -1,6 +1,5 @@
 #language: en
-
-@regression
+@testingConfiguration
 Feature: Testing configuration
 
   Scenario Outline: Testing configuration scenario 1
@@ -9,22 +8,6 @@ Feature: Testing configuration
     Examples:
       | data      |
       | Test.json |
-      | Test.json |
-      | Test.json |
-      | Test.json |
-      | Test.json |
-      | Test.json |
-      | Test.json |
-      | Test.json |
-      | Test.json |
-      | Test.json |
-      | Test.json |
-      | Test.json |
-
-  # TODO: Scenarios searching data
-  #  - search countries (more than 0 values, not empty .. )
-  #  - search hobbies (more than 0 values, not empty .. )
-  #  - search programming time experience (more than 0 values, not empty .. )
 
   # TODO: Scenarios end to end
   # - register
@@ -66,4 +49,3 @@ Feature: Testing configuration
   # delete
     # delete non existent user
     # try to delete invalid token
-  
