@@ -1,10 +1,9 @@
 #language: en
 
 @regression @endToEnd
-Feature: End to End
+Feature: User lifecycle
 
-  # FIXME: adjust scenario description
-  Scenario Outline: End to end scenario
+  Scenario Outline: A user can register, authenticate, update, retrieve, and delete their profile
     Given add authorization header
     And add headers
       | Content-Type | application/json |
