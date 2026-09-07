@@ -70,4 +70,17 @@
 
     </dependencies>
 
+    <build>
+
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <excludes>
+                    <exclude>evidences/**</exclude>
+                </excludes>
+            </testResource>
+        </testResources>
+
+    </build>
+
 </project>
