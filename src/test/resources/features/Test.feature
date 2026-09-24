@@ -10,15 +10,6 @@ Feature: Testing configuration
       | Test.json |
 
   # TODO: Scenarios wrong data
-  # - register
-    # - try to register same e-mail 2 times
-    # - try to register same nickname 2 times
-    # - try to use non existent hobby
-    # - try to use non existent programming time experiênce
-    # - try to use non existent country
-    # - try to use birthdate more than today
-    # - try to use invalid e-mail format
-    # - try to use invalid password format
 
   # - login
     #  - try to login with non existent user
