@@ -9,14 +9,6 @@ Feature: Testing configuration
       | data      |
       | Test.json |
 
-  # TODO: Scenarios end to end
-  # - register
-  # - login
-  # - update data
-  # - get data
-  # - delete user
-  # - get data (404)
-
   # TODO: Scenarios wrong data
   # - register
     # - try to register same e-mail 2 times
@@ -41,7 +33,3 @@ Feature: Testing configuration
     # - try to use non existent hobby
     # - try to use non existent programming time experiênce
     # - try to use non existent country
-
-  # get
-    # try to get non existent user (invalid token)
-    # try to get a user that is already deleted (create, login, save token, delete try to get)
