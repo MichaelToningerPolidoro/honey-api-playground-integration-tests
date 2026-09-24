@@ -45,7 +45,3 @@ Feature: Testing configuration
   # get
     # try to get non existent user (invalid token)
     # try to get a user that is already deleted (create, login, save token, delete try to get)
-
-  # delete
-    # delete non existent user
-    # try to delete invalid token
