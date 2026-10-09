@@ -255,7 +255,7 @@ Feature: invalid data update service
     Given add headers
       | loginToken | {STORAGE}loginTokenVar |
     And add body from json file update.json changing data
-      | name | This name has more than sixty-four characters and should be rejected by validation |
+      | name | This name has more than sixty four characters and should be rejected by validation |
     When send a patch to http://localhost:8080/v1/user
     Then validate response status equals 400
     And validate response body
