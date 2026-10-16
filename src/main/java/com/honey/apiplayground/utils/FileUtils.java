@@ -32,9 +32,7 @@ public final class FileUtils {
     }
 
     public static Collection<File> getAllClassesFilesInsideProject() {
-        // TODO change here, take it in constants
-        final String completePath = FileConstants.USER_DIR + File.separator + "src";
-        final File directory = new File(completePath);
+        final File directory = new File(FileConstants.PROJECT_CLASSES_PATH);
         final String[] extensions = {"java"};
         final boolean recursive = true;
 
