@@ -1,5 +1,6 @@
 package com.honey.apiplayground.utils;
 
+import com.honey.apiplayground.cache.AuthorizationCache;
 import com.honey.apiplayground.service.AuthorizationProvider;
 
 import java.util.List;
@@ -9,8 +10,15 @@ public final class ClassRetriever {
 
     private ClassRetriever() {}
 
-    public static AuthorizationProvider getAuthorizationClassImpl() {
-        // TODO: Add cache here to improve performance
+    static {
+        AuthorizationCache.set(findAuthorizationClassImpl());
+    }
+
+    public static AuthorizationProvider getAuthorizationImpl() {
+        return AuthorizationCache.get();
+    }
+
+    private static AuthorizationProvider findAuthorizationClassImpl() {
         final Class<AuthorizationProvider> expectedInterface = AuthorizationProvider.class;
         final List<Class<AuthorizationProvider>> authorizationClassImplementations = ClassUtils.getClassesImplementingInterface(expectedInterface);
 
@@ -19,13 +27,11 @@ public final class ClassRetriever {
         }
 
         try {
-            final AuthorizationProvider authorizationServiceInstance = authorizationClassImplementations.get(0).getConstructor().newInstance();
+            return authorizationClassImplementations.getFirst().getConstructor().newInstance();
 
-            // TODO add to cache here to improve performance
-
-            return authorizationServiceInstance;
         } catch (Exception e) {
             throw new NoSuchElementException("No classes implementing " + expectedInterface.getSimpleName() + " has been found!");
+
         }
     }
 }

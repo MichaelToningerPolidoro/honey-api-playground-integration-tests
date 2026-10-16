@@ -34,7 +34,7 @@ public final class RequestHandler {
     }
 
     public static void addAuthorizationHeader() {
-        addHeader("Authorization", ClassRetriever.getAuthorizationClassImpl().getToken());
+        addHeader("Authorization", ClassRetriever.getAuthorizationImpl().getToken());
     }
 
     public static void addBody(String body) {
