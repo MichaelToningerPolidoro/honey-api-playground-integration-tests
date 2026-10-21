@@ -1,6 +1,7 @@
 package com.honey.apiplayground;
 
 import com.honey.apiplayground.context.ScenarioContextStorage;
+import com.honey.apiplayground.utils.RandomDataUtils;
 
 import java.util.List;
 
@@ -45,6 +46,20 @@ public enum DataType {
         @Override
         public Object getValue(String rawValue) {
             return null;
+        }
+    },
+
+    EMAIL {
+        @Override
+        public Object getValue(String rawValue) {
+            return RandomDataUtils.generateEmail();
+        }
+    },
+
+    NICKNAME {
+        @Override
+        public Object getValue(String rawValue) {
+            return RandomDataUtils.generateNickname();
         }
     };
 
