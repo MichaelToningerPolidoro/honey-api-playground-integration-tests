@@ -3,11 +3,13 @@ Feature: invalid data login service
 
   @loginWithNonExistentUser
   Scenario: Try to login with a non existent user
+    Given save data in storage
+      | loginEmail | {EMAIL} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file login.json changing data
-      | email | login-non-existent-user@test.com |
+      | email | {STORAGE}loginEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 404
     And validate response body
@@ -15,17 +17,20 @@ Feature: invalid data login service
 
   @loginWithWrongPassword
   Scenario: Try to login with a wrong password
+    Given save data in storage
+      | loginEmail    | {EMAIL}    |
+      | loginNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | loginWrongPassword |
-      | email    | login-wrong-password@test.com |
+      | nickName | {STORAGE}loginNickname |
+      | email    | {STORAGE}loginEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
 
     Given add body from json file login.json changing data
-      | email    | login-wrong-password@test.com |
+      | email    | {STORAGE}loginEmail |
       | password | wrong-password |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 401

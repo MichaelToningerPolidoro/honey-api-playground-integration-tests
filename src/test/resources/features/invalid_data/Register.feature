@@ -3,18 +3,22 @@ Feature: invalid data register service
 
   @registerWithExistingEmail
   Scenario: Try to register a user with an email that is already registered
+    Given save data in storage
+      | existingEmail              | {EMAIL}    |
+      | existingEmailFirstNickname | {NICKNAME} |
+      | existingEmailSecondNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | registerExistingEmailFirst       |
-      | email    | register-existing-email@test.com |
+      | nickName | {STORAGE}existingEmailFirstNickname |
+      | email    | {STORAGE}existingEmail              |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
 
     Given add body from json file register.json changing data
-      | nickName | registerExistingEmailSecond      |
-      | email    | register-existing-email@test.com |
+      | nickName | {STORAGE}existingEmailSecondNickname |
+      | email    | {STORAGE}existingEmail              |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 400
     And validate response body
@@ -23,18 +27,22 @@ Feature: invalid data register service
 
   @registerWithExistingNickname
   Scenario: Try to register a user with a nickname that is already registered
+    Given save data in storage
+      | existingNickname | {NICKNAME} |
+      | existingNicknameFirstEmail | {EMAIL} |
+      | existingNicknameSecondEmail | {EMAIL} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | registerExistingNickname                  |
-      | email    | register-existing-nickname-first@test.com |
+      | nickName | {STORAGE}existingNickname          |
+      | email    | {STORAGE}existingNicknameFirstEmail |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
 
     Given add body from json file register.json changing data
-      | nickName | registerExistingNickname                   |
-      | email    | register-existing-nickname-second@test.com |
+      | nickName | {STORAGE}existingNickname           |
+      | email    | {STORAGE}existingNicknameSecondEmail |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 400
     And validate response body

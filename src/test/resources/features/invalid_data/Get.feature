@@ -13,18 +13,21 @@ Feature: invalid data get service
 
   @getUserNoLongerExists
   Scenario: Try to get a user that no longer exists
+    Given save data in storage
+      | getUserEmail    | {EMAIL}    |
+      | getUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | getUserNoLongerExists             |
-      | email    | getusernolongerexists@testing.com |
+      | nickName | {STORAGE}getUserNickname |
+      | email    | {STORAGE}getUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
 
     Given remove body
     And add body from json file login.json changing data
-      | email | getusernolongerexists@testing.com |
+      | email | {STORAGE}getUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data

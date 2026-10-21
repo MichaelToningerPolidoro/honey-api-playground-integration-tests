@@ -3,23 +3,28 @@ Feature: invalid data update service
 
   @updateWithExistingNickname
   Scenario: Try to update a user with a nickname that is already registered
+    Given save data in storage
+      | updateOwnerEmail       | {EMAIL}    |
+      | updateTargetEmail      | {EMAIL}    |
+      | updateExistingNickname | {NICKNAME} |
+      | updateTargetNickname   | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | updateExistingNickname |
-      | email    | update-existing-nickname-owner@test.com |
+      | nickName | {STORAGE}updateExistingNickname |
+      | email    | {STORAGE}updateOwnerEmail       |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
 
     Given add body from json file register.json changing data
-      | nickName | updateNicknameTarget |
-      | email    | update-existing-nickname-target@test.com |
+      | nickName | {STORAGE}updateTargetNickname |
+      | email    | {STORAGE}updateTargetEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
 
     Given add body from json file login.json changing data
-      | email | update-existing-nickname-target@test.com |
+      | email | {STORAGE}updateTargetEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data
@@ -28,7 +33,7 @@ Feature: invalid data update service
     Given add headers
       | loginToken | {STORAGE}loginTokenVar |
     And add body from json file update.json changing data
-      | nickName | updateExistingNickname |
+      | nickName | {STORAGE}updateExistingNickname |
     When send a patch to http://localhost:8080/v1/user
     Then validate response status equals 400
     And validate response body
@@ -49,17 +54,20 @@ Feature: invalid data update service
 
   @updateWithInvalidNickname
   Scenario: Try to update a user with an invalid nickname
+    Given save data in storage
+      | updateUserEmail    | {EMAIL}    |
+      | updateUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | updateInvalidNicknameUser |
-      | email    | update-invalid-nickname@test.com |
+      | nickName | {STORAGE}updateUserNickname |
+      | email    | {STORAGE}updateUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
 
     Given add body from json file login.json changing data
-      | email | update-invalid-nickname@test.com |
+      | email | {STORAGE}updateUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data
@@ -77,17 +85,20 @@ Feature: invalid data update service
 
   @updateWithNonExistentHobby
   Scenario: Try to update a user with a non existent hobby
+    Given save data in storage
+      | updateUserEmail    | {EMAIL}    |
+      | updateUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | updateNonExistentHobby2 |
-      | email    | update-non-existent-hobby2@test.com |
+      | nickName | {STORAGE}updateUserNickname |
+      | email    | {STORAGE}updateUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
 
     Given add body from json file login.json changing data
-      | email | update-non-existent-hobby2@test.com |
+      | email | {STORAGE}updateUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data
@@ -104,17 +115,20 @@ Feature: invalid data update service
 
   @updateWithNonExistentProgrammingTime
   Scenario: Try to update a user with a non existent programming time experience
+    Given save data in storage
+      | updateUserEmail    | {EMAIL}    |
+      | updateUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | updtNonExistentProgrammingTime |
-      | email    | updating-non-existent-programming-time2@test.com |
+      | nickName | {STORAGE}updateUserNickname |
+      | email    | {STORAGE}updateUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
 
     Given add body from json file login.json changing data
-      | email | updating-non-existent-programming-time2@test.com |
+      | email | {STORAGE}updateUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data
@@ -131,17 +145,20 @@ Feature: invalid data update service
 
   @updateWithNonExistentCountry
   Scenario: Try to update a user with a non existent country
+    Given save data in storage
+      | updateUserEmail    | {EMAIL}    |
+      | updateUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | updateNonExistentCountry |
-      | email    | update-non-existent-country@test.com |
+      | nickName | {STORAGE}updateUserNickname |
+      | email    | {STORAGE}updateUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
 
     Given add body from json file login.json changing data
-      | email | update-non-existent-country@test.com |
+      | email | {STORAGE}updateUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data
@@ -160,16 +177,19 @@ Feature: invalid data update service
 
   @updateWithNullNickname
   Scenario: Try to update a user with a null nickname
+    Given save data in storage
+      | updateUserEmail    | {EMAIL}    |
+      | updateUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | updateNullNickname |
-      | email    | update-null-nickname@test.com |
+      | nickName | {STORAGE}updateUserNickname |
+      | email    | {STORAGE}updateUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
     Given add body from json file login.json changing data
-      | email | update-null-nickname@test.com |
+      | email | {STORAGE}updateUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data
@@ -186,16 +206,19 @@ Feature: invalid data update service
 
   @updateWithLongNickname
   Scenario: Try to update a user with a nickname longer than the allowed limit
+    Given save data in storage
+      | updateUserEmail    | {EMAIL}    |
+      | updateUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | updateLongNickname |
-      | email    | update-long-nickname@test.com |
+      | nickName | {STORAGE}updateUserNickname |
+      | email    | {STORAGE}updateUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
     Given add body from json file login.json changing data
-      | email | update-long-nickname@test.com |
+      | email | {STORAGE}updateUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data
@@ -212,16 +235,19 @@ Feature: invalid data update service
 
   @updateWithNullName
   Scenario: Try to update a user with a null name
+    Given save data in storage
+      | updateUserEmail    | {EMAIL}    |
+      | updateUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | updateNullName |
-      | email    | update-null-name@test.com |
+      | nickName | {STORAGE}updateUserNickname |
+      | email    | {STORAGE}updateUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
     Given add body from json file login.json changing data
-      | email | update-null-name@test.com |
+      | email | {STORAGE}updateUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data
@@ -238,16 +264,19 @@ Feature: invalid data update service
 
   @updateWithLongName
   Scenario: Try to update a user with a name longer than the allowed limit
+    Given save data in storage
+      | updateUserEmail    | {EMAIL}    |
+      | updateUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | updateLongName |
-      | email    | update-long-name@test.com |
+      | nickName | {STORAGE}updateUserNickname |
+      | email    | {STORAGE}updateUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
     Given add body from json file login.json changing data
-      | email | update-long-name@test.com |
+      | email | {STORAGE}updateUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data
@@ -264,16 +293,19 @@ Feature: invalid data update service
 
   @updateWithInvalidName
   Scenario: Try to update a user with an invalid name format
+    Given save data in storage
+      | updateUserEmail    | {EMAIL}    |
+      | updateUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | updateInvalidName |
-      | email    | update-invalid-name@test.com |
+      | nickName | {STORAGE}updateUserNickname |
+      | email    | {STORAGE}updateUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
     Given add body from json file login.json changing data
-      | email | update-invalid-name@test.com |
+      | email | {STORAGE}updateUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data
@@ -290,16 +322,19 @@ Feature: invalid data update service
 
   @updateWithNullPassword
   Scenario: Try to update a user with a null password
+    Given save data in storage
+      | updateUserEmail    | {EMAIL}    |
+      | updateUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | updateNullPassword |
-      | email    | update-null-password@test.com |
+      | nickName | {STORAGE}updateUserNickname |
+      | email    | {STORAGE}updateUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
     Given add body from json file login.json changing data
-      | email | update-null-password@test.com |
+      | email | {STORAGE}updateUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data
@@ -316,16 +351,19 @@ Feature: invalid data update service
 
   @updateWithLongPassword
   Scenario: Try to update a user with a password longer than the allowed limit
+    Given save data in storage
+      | updateUserEmail    | {EMAIL}    |
+      | updateUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | updateLongPassword |
-      | email    | update-long-password@test.com |
+      | nickName | {STORAGE}updateUserNickname |
+      | email    | {STORAGE}updateUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
     Given add body from json file login.json changing data
-      | email | update-long-password@test.com |
+      | email | {STORAGE}updateUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data
@@ -342,16 +380,19 @@ Feature: invalid data update service
 
   @updateWithInvalidPassword
   Scenario: Try to update a user with an invalid password format
+    Given save data in storage
+      | updateUserEmail    | {EMAIL}    |
+      | updateUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | updateInvalidPassword |
-      | email    | update-invalid-password@test.com |
+      | nickName | {STORAGE}updateUserNickname |
+      | email    | {STORAGE}updateUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
     Given add body from json file login.json changing data
-      | email | update-invalid-password@test.com |
+      | email | {STORAGE}updateUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data
@@ -367,16 +408,19 @@ Feature: invalid data update service
 
   @updateWithNullProgrammingTime
   Scenario: Try to update a user with a null programming time
+    Given save data in storage
+      | updateUserEmail    | {EMAIL}    |
+      | updateUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | updateNullProgrammingTime |
-      | email    | update-null-programming-time@test.com |
+      | nickName | {STORAGE}updateUserNickname |
+      | email    | {STORAGE}updateUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
     Given add body from json file login.json changing data
-      | email | update-null-programming-time@test.com |
+      | email | {STORAGE}updateUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data
@@ -393,16 +437,19 @@ Feature: invalid data update service
 
   @updateWithLongProgrammingTime
   Scenario: Try to update a user with a programming time longer than the allowed limit
+    Given save data in storage
+      | updateUserEmail    | {EMAIL}    |
+      | updateUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | updateLongProgrammingTime |
-      | email    | update-long-programming-time@test.com |
+      | nickName | {STORAGE}updateUserNickname |
+      | email    | {STORAGE}updateUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
     Given add body from json file login.json changing data
-      | email | update-long-programming-time@test.com |
+      | email | {STORAGE}updateUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data
@@ -419,16 +466,19 @@ Feature: invalid data update service
 
   @updateWithNullBornData
   Scenario: Try to update a user with null born data
+    Given save data in storage
+      | updateUserEmail    | {EMAIL}    |
+      | updateUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | updateNullBornData |
-      | email    | update-null-born-data@test.com |
+      | nickName | {STORAGE}updateUserNickname |
+      | email    | {STORAGE}updateUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
     Given add body from json file login.json changing data
-      | email | update-null-born-data@test.com |
+      | email | {STORAGE}updateUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data
@@ -445,16 +495,19 @@ Feature: invalid data update service
 
   @updateWithNullBirthdate
   Scenario: Try to update a user with a null birthdate
+    Given save data in storage
+      | updateUserEmail    | {EMAIL}    |
+      | updateUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | updateNullBirthdate |
-      | email    | update-null-birthdate@test.com |
+      | nickName | {STORAGE}updateUserNickname |
+      | email    | {STORAGE}updateUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
     Given add body from json file login.json changing data
-      | email | update-null-birthdate@test.com |
+      | email | {STORAGE}updateUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data
@@ -470,16 +523,19 @@ Feature: invalid data update service
 
   @updateWithFutureBirthdate
   Scenario: Try to update a user with a birthdate later than today
+    Given save data in storage
+      | updateUserEmail    | {EMAIL}    |
+      | updateUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | updateFutureBirthdate |
-      | email    | update-future-birthdate@test.com |
+      | nickName | {STORAGE}updateUserNickname |
+      | email    | {STORAGE}updateUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
     Given add body from json file login.json changing data
-      | email | update-future-birthdate@test.com |
+      | email | {STORAGE}updateUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data
@@ -496,16 +552,19 @@ Feature: invalid data update service
 
   @updateWithNullCountry
   Scenario: Try to update a user with a null country
+    Given save data in storage
+      | updateUserEmail    | {EMAIL}    |
+      | updateUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | updateNullCountry |
-      | email    | update-null-country@test.com |
+      | nickName | {STORAGE}updateUserNickname |
+      | email    | {STORAGE}updateUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
     Given add body from json file login.json changing data
-      | email | update-null-country@test.com |
+      | email | {STORAGE}updateUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data
@@ -522,16 +581,19 @@ Feature: invalid data update service
 
   @updateWithLongCountry
   Scenario: Try to update a user with a country longer than the allowed limit
+    Given save data in storage
+      | updateUserEmail    | {EMAIL}    |
+      | updateUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | updateLongCountry |
-      | email    | update-long-country@test.com |
+      | nickName | {STORAGE}updateUserNickname |
+      | email    | {STORAGE}updateUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
     Given add body from json file login.json changing data
-      | email | update-long-country@test.com |
+      | email | {STORAGE}updateUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data
@@ -548,16 +610,19 @@ Feature: invalid data update service
 
   @updateWithEmptyHobbies
   Scenario: Try to update a user without hobbies
+    Given save data in storage
+      | updateUserEmail    | {EMAIL}    |
+      | updateUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | updateEmptyHobbies |
-      | email    | update-empty-hobbies@test.com |
+      | nickName | {STORAGE}updateUserNickname |
+      | email    | {STORAGE}updateUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
     Given add body from json file login.json changing data
-      | email | update-empty-hobbies@test.com |
+      | email | {STORAGE}updateUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data
@@ -574,16 +639,19 @@ Feature: invalid data update service
 
   @updateWithMoreThanThreeHobbies
   Scenario: Try to update a user with more than three hobbies
+    Given save data in storage
+      | updateUserEmail    | {EMAIL}    |
+      | updateUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | updateMoreThanThreeHobbies |
-      | email    | update-more-than-three-hobbies@test.com |
+      | nickName | {STORAGE}updateUserNickname |
+      | email    | {STORAGE}updateUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
     Given add body from json file login.json changing data
-      | email | update-more-than-three-hobbies@test.com |
+      | email | {STORAGE}updateUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data

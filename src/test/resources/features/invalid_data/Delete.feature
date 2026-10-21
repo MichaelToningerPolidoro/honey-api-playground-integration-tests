@@ -3,18 +3,21 @@ Feature: invalid data delete service
 
   @deleteUserNoLongerExists
   Scenario: Delete a user that no longer exists
+    Given save data in storage
+      | deleteUserEmail    | {EMAIL}    |
+      | deleteUserNickname | {NICKNAME} |
     Given add authorization header
     And add headers
       | Content-Type | application/json |
     And add body from json file register.json changing data
-      | nickName | deleteUserNoLongerExists        |
-      | email    | deleteemailnolongerexists@testing.com |
+      | nickName | {STORAGE}deleteUserNickname |
+      | email    | {STORAGE}deleteUserEmail    |
     When send a post to http://localhost:8080/v1/user
     Then validate response status equals 201
 
     Given remove body
     And add body from json file login.json changing data
-      | email | deleteemailnolongerexists@testing.com |
+      | email | {STORAGE}deleteUserEmail |
     When send a post to http://localhost:8080/v1/login
     Then validate response status equals 200
     And save response data
