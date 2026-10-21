@@ -15,15 +15,15 @@ The tests were created to:
 - test the country, hobby, and programming-time reference resources;
 - detect regressions in the documented API behavior.
 
-## Technologies and tools
+## Main Technologies and tools
 
-- Java 24
-- Maven
-- Cucumber 8
-- JUnit Platform Suite 6
-- REST Assured
-- Jackson
-- JsonPath
+- Java 24 — Primary programming language.
+- Cucumber 8 — Used to define test scenarios in Gherkin.
+- JUnit Platform Suite 6 — Configure and organize test execution through test suites. 
+- REST Assured — Build HTTP requests and validate REST API responses. 
+- JsonPath — Used to manipulate data during requests. 
+- Maven — Used for dependency management, build configuration, and test execution. 
+- OpenAI Codex — Used as an AI-assisted development.
 
 ## Prerequisites
 
