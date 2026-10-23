@@ -44,13 +44,10 @@ To run the regression test suite:
 mvn test -Dcucumber.filter.tags="@regression"
 ```
 
-The project runner executes the scenario marked with `@createData` by default. This scenario is used to create data required by other scenarios.
-
-The test suite can also be filtered using Cucumber tag expressions.
+The test suite can be filtered using Cucumber tag expressions.
 
 | Tag | What it validates |
 | --- | --- |
-| `@createData` | Creates data required by other scenarios. This is the default tag used by the runner. |
 | `@regression` | Groups the regression scenarios that validate the API's expected behavior. |
 | `@endToEnd` | Validates the complete user lifecycle: registration, authentication, retrieval, update, and deletion. |
 | `@referenceData` | Validates the retrieval of countries, hobbies, and programming-time options. |
@@ -60,6 +57,7 @@ The test suite can also be filtered using Cucumber tag expressions.
 | `@invalidDataGet` | Validates unauthorized requests and retrieval of non-existent users. |
 | `@invalidDataUpdate` | Validates authentication, relationships, and invalid data during user updates. |
 | `@invalidDataDelete` | Validates unauthorized deletion requests and deletion of non-existent users. |
+| `@contract` / `@schema` | Validates response structures using JSON Schema. |
 
 ## Scenario coverage
 
@@ -74,6 +72,7 @@ The scenarios are organized by purpose:
 | `features/invalid_data/Get.feature` | Retrieval with an invalid token or a non-existent user |
 | `features/invalid_data/Update.feature` | Update with authentication, relationships, and invalid data |
 | `features/invalid_data/Delete.feature` | Deletion of non-existent users and unauthorized requests |
+| `features/schemas/ResponseSchemas.feature` | Contract validation for login, user, and validation-error responses |
 
 The JSON files in `src/test/resources/request/body` serve as request templates. Scenarios can replace specific fields during execution to generate isolated and reproducible data.
 
