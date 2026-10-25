@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User response",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "nickname",
+    "name",
+    "email",
+    "programmingTime",
+    "bornDataDTO",
+    "hobbies"
+  ],
+  "properties": {
+    "nickname": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "email": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^@]+\\*+@[^@]+$"
+    },
+    "programmingTime": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bornDataDTO": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "date",
+        "country"
+      ],
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "country": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "hobbies": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}
