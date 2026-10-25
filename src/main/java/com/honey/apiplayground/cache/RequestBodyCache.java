@@ -1,19 +1,16 @@
 package com.honey.apiplayground.cache;
 
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public final class RequestBodyCache {
 
-    private static final Map<Path, String> requestBodyCache = new HashMap<>();
+    private static final ConcurrentHashMap<Path, String> requestBodyCache = new ConcurrentHashMap<>();
 
     private RequestBodyCache() {}
 
-    public static synchronized void add(Path jsonFilePath, String jsonBody) {
-        if (!requestBodyCache.containsKey(jsonFilePath)) {
-            requestBodyCache.put(jsonFilePath, jsonBody);
-        }
+    public static void add(Path jsonFilePath, String jsonBody) {
+        requestBodyCache.putIfAbsent(jsonFilePath, jsonBody);
     }
 
     public static String getCachedJsonBody(Path jsonFilePath) {
