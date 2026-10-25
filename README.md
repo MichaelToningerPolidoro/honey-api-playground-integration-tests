@@ -4,7 +4,7 @@ This project contains the integration tests for [Honey API Playground](https://g
 
 The API project documents the available features and endpoints. This README complements that documentation by explaining how to run and maintain the automated tests.
 
-## Objectives
+## 1. Objectives
 
 The tests were created to:
 
@@ -15,7 +15,7 @@ The tests were created to:
 - test the country, hobby, and programming-time reference resources;
 - detect regressions in the documented API behavior.
 
-## Main Technologies and tools
+## 2. Main Technologies and tools
 
 - Java 24 — Primary programming language.
 - Cucumber 8 — Used to define test scenarios in Gherkin.
@@ -25,7 +25,7 @@ The tests were created to:
 - Maven — Used for dependency management, build configuration, and test execution. 
 - OpenAI Codex — Used as an AI-assisted development.
 
-## Prerequisites
+## 3. Prerequisites
 
 Before running the tests, you must:
 
@@ -36,7 +36,7 @@ Before running the tests, you must:
 
 The tests currently use the local URL `http://localhost:8080` directly in the `.feature` files.
 
-## Running the tests
+## 4. Running the tests
 
 To run the regression test suite:
 
@@ -59,7 +59,7 @@ The test suite can be filtered using Cucumber tag expressions.
 | `@invalidDataDelete` | Validates unauthorized deletion requests and deletion of non-existent users. |
 | `@contract` / `@schema` | Validates response structures using JSON Schema. |
 
-## Scenario coverage
+## 5. Scenario coverage
 
 The scenarios are organized by purpose:
 
@@ -76,7 +76,7 @@ The scenarios are organized by purpose:
 
 The JSON files in `src/test/resources/request/body` serve as request templates. Scenarios can replace specific fields during execution to generate isolated and reproducible data.
 
-## Project structure
+## 6. Project structure
 
 ```text
 src/
@@ -98,7 +98,7 @@ src/
         └── request/      # JSON bodies and schemas
 ```
 
-## Environment variables
+## 7. Environment variables
 
 The following environment variables can be used to configure the tests:
 
@@ -120,7 +120,7 @@ $env:cache_request_bodies = "true"
 
 Cucumber is configured to support parallel execution. The body cache remains disabled by default.
 
-## Reports and evidence
+## 8. Reports and evidence
 
 In addition to the terminal output, the runner is configured to generate a Cucumber HTML report at:
 
@@ -130,7 +130,7 @@ src/test/resources/evidences/cucumber-html-report.html
 
 Requests and responses are automatically logged when a validation fails, making it easier to investigate broken scenarios.
 
-## Relationship with the API documentation
+## 9. Relationship with the API documentation
 
 To understand the endpoints, models, response codes, and business rules covered by the tests, see the main project's documentation:
 
@@ -138,6 +138,6 @@ To understand the endpoints, models, response codes, and business rules covered 
 - [API documentation](https://github.com/MichaelToningerPolidoro/honey-api-playground/blob/main/docs/api.md)
 - [Configuration documentation](https://github.com/MichaelToningerPolidoro/honey-api-playground/blob/main/docs/configuration.md)
 
-## License
+## 10. License
 
 This project is licensed under the terms described in the [LICENSE](LICENSE) file.
