@@ -13,4 +13,8 @@ public final class PathUtils {
     public static Path getCompleteJsonFilePathForRequestBodies(String jsonFileName) {
         return Paths.get(FileConstants.REQUEST_BODIES_PATH + File.separator + jsonFileName);
     }
+
+    public static Path getCompleteJsonFilePathForSchemas(String schemaFileName) {
+        return Paths.get(FileConstants.SCHEMA_CLASSPATH_DIRECTORY + File.separator + schemaFileName);
+    }
 }

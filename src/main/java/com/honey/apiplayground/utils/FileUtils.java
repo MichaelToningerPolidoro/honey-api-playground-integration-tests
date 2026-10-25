@@ -6,23 +6,19 @@ import java.io.File;
 import java.io.UncheckedIOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.file.Path;
 import java.util.Collection;
 
 public final class FileUtils {
 
     private FileUtils() {}
 
-    public static String getJsonFileText(String jsonFileName) {
-        FileChannel fileChannel;
-
-        try {
-            fileChannel = FileChannel.open(PathUtils.getCompleteJsonFilePathForRequestBodies(jsonFileName));
-
+    public static String getJsonFileText(Path jsonFilePath) {
+        try (FileChannel fileChannel = FileChannel.open(jsonFilePath)) {
             final int arraySize = (int) fileChannel.size();
             final byte[] data = new byte[arraySize];
 
             fileChannel.read(ByteBuffer.wrap(data));
-            fileChannel.close();
 
             return new String(data);
 
